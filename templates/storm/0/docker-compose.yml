@@ -1,5 +1,5 @@
 nimbus:
-    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
+    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:69
     labels:
      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     command: --daemon nimbus drpc
@@ -9,7 +9,7 @@ nimbus:
     ports:
      - "6627:6627"
 supervisor:
-    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
+    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:69
     labels:
      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     command: --daemon supervisor logviewer
@@ -27,7 +27,7 @@ supervisor:
      - nimbus
     restart: always
 ui:
-    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
+    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:69
     labels:
      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     command: --daemon ui
