@@ -1,19 +1,18 @@
-#  Storm Clustter
+#  Storm Cluster
 
 
 ### Info:
 
- This template creates, scale in and scale out a multinodes zk (zookeeper) cluster Connected with Storm Cluster ( Nimbus, Storm, Supervisor) on top of Rancher. The configuration is generated with confd from Rancher metadata. 
+ This template creates, scale in and scale out a multinodes storm cluster  ( Nimbus, Storm, Supervisor) on top of Rancher. The configuration is generated with confd from Rancher metadata. 
  
 ### Usage:
 
- Select zoo+storm from catalog. 
+ Select storm from catalog. 
  
- Enter the number of nodes, mem and refresh interval for the zk cluster and storm components.
 
  Note: When you scale the cluster, zero downtime is not guaranteed..yet..
  
  Click deploy.
  
- Zookeeper+Storm can now be accessed over the Rancher network. 
+ Storm can now be accessed over the Rancher network. 
 
