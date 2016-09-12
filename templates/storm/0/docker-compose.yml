@@ -2,7 +2,7 @@ nimbus:
     image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
     labels:
      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    command: /usr/local/apache-storm/bin/storm nimbus -c storm.zookeeper.servers="[\"zk\"]" -c nimbus.host="nimbus"
+    command: --daemon nimbus drpc
     external_links:
      - zk
     restart: always
@@ -12,7 +12,7 @@ supervisor:
     image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
     labels:
      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    command: /usr/local/apache-storm/bin/storm supervisor -c storm.zookeeper.servers="[\"zk\"]" -c nimbus.host="nimbus"
+    command: --daemon supervisor logviewer
     ports:
      - "8000:8000"
      - "6700:6700"
@@ -30,7 +30,7 @@ ui:
     image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
     labels:
      io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-    command: /usr/local/apache-storm/bin/storm ui -c storm.zookeeper.servers="[\"zk\"]" -c nimbus.host="nimbus"
+    command: --daemon ui
     links:
      - supervisor
     restart: always
