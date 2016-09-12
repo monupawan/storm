@@ -1,0 +1,7 @@
+name: Storm Cluster
+description: |
+  Storm cluster
+version: Storm-0.9.3-rancher1
+category: Clustering
+maintainer: "Pawan Kumar <monu.pawan@gmail.com>"
+minimum_rancher_version: v0.59.0

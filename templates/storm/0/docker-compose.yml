@@ -1,0 +1,38 @@
+nimbus:
+    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
+    labels:
+     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    command: /usr/local/storm/bin/storm nimbus -c storm.zookeeper.servers="[\"zk\"]" -c nimbus.host="nimbus"
+    external_links:
+     - zk
+    restart: always
+    ports:
+     - "6627:6627"
+supervisor:
+    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
+    labels:
+     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    command: /usr/local/storm/bin/storm supervisor -c storm.zookeeper.servers="[\"zk\"]" -c nimbus.host="nimbus"
+    ports:
+     - "8000:8000"
+     - "6700:6700"
+     - "6701:6701"
+     - "6702:6702"
+     - "6703:6703"
+     - "6704:6704"
+     - "6705:6705"
+     - "6706:6706"
+     - "6707:6707"
+    links:
+     - nimbus
+    restart: always
+ui:
+    image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:68
+    labels:
+     io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    command: /usr/local/storm/bin/storm ui -c storm.zookeeper.servers="[\"zk\"]" -c nimbus.host="nimbus"
+    links:
+     - supervisor
+    restart: always
+    ports:
+     - "8080:8080"

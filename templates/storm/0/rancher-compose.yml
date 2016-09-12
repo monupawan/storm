@@ -1,0 +1,32 @@
+.catalog:
+  name: Storm Cluster
+  version: Storm-0.9.3-rancher1
+  description: |
+    Apache Storm cluster.
+  minimum_rancher_version: v0.56.0
+  maintainer: "Pawan Kumar <monu.pawan@gmail.com>"
+  uuid: zk-0
+  questions:
+    - variable: "nimbus_scale"
+      description: "Number of Nimbus nodes"
+      label: "nimbus Nodes:"
+      required: true
+      default: 1
+      type: "int"
+    - variable: "supervisor_scale"
+      description: "Number of supervisor nodes"
+      label: "supervisor Nodes:"
+      required: true
+      default: 3
+      type: "int"
+    - variable: "ui_scale"
+      description: "Number of ui nodes"
+      label: "ui Nodes:"
+      required: true
+      default: 1
+nimbus:
+ scale: ${nimbus_scale}
+supervisor:
+ scale: ${supervisor_scale}
+ui:
+ scale: ${ui_scale}
