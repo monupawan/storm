@@ -10,6 +10,10 @@ nimbus:
     - zookeeper/zk
 supervisor:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:supervisor
+  labels: 
+    io.rancher.container.dns: true
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+    io.rancher.container.hostname_override: container_name
   command: mkdir -p /var/run/sshd
   command: bash /usr/bin/start-supervisor.sh
   ports:
