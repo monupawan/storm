@@ -24,6 +24,14 @@
       label: "ui Nodes:"
       required: true
       default: 1
+    - variable: "zk_link"
+      description: |
+        Choose the Zookeeper service to use. 
+        It's really recommended a dedicated zookeeper service just for Nifi.
+      label: "Zookeeper stack/service"
+      default: "zookeeper/zk"
+      required: true
+      type: "service"
 nimbus:
  scale: ${nimbus_scale}
 supervisor:
