@@ -1,6 +1,7 @@
 nimbus:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:nimbus
   command: bash /usr/bin/start-supervisor.sh
+  restart: always
   ports:
     - "49773:3773"
     - "49772:3772"
@@ -14,6 +15,7 @@ supervisor:
     io.rancher.container.dns: true
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
+  restart: always
   command: mkdir -p /var/run/sshd
   command: bash /usr/bin/start-supervisor.sh
   ports:
@@ -23,9 +25,12 @@ supervisor:
     - nimbus:nimbus
   external_links:
     - zookeeper/zk
+  volumes:
+   - /usr/local/aeris_lib/:/usr/local/aeris_lib
 ui:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:ui
   command: bash /usr/bin/start-supervisor.sh
+  restart: always
   ports:
     - "49080:8080"
     - "22"
@@ -33,3 +38,5 @@ ui:
     - nimbus:nimbus
   external_links:
     - zookeeper/zk
+  volumes:
+   - /usr/local/aeris_lib/:/usr/local/aeris_lib
