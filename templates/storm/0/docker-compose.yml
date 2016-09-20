@@ -8,7 +8,7 @@ nimbus:
     - "49627:6627"
     - "22"
   external_links: 
-    - zookeeper/zk
+    - ${zk_link}
 supervisor:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:supervisor
   labels: 
@@ -24,7 +24,7 @@ supervisor:
   links: 
     - nimbus:nimbus
   external_links:
-    - zookeeper/zk
+    - ${zk_link}
   volumes:
    - /usr/local/aeris_lib/:/usr/local/aeris_lib
 ui:
@@ -37,6 +37,6 @@ ui:
   links: 
     - nimbus:nimbus
   external_links:
-    - zookeeper/zk
+    - ${zk_link}
   volumes:
    - /usr/local/aeris_lib/:/usr/local/aeris_lib
