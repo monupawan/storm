@@ -9,6 +9,9 @@ nimbus:
     - "22"
   external_links: 
     - ${zk_link}
+  volumes:
+    - /usr/local/aeris_lib/resources/:/usr/local/aeris_lib/resources
+    - /usr/local/aeris_lib/storm/:/usr/local/aeris_lib/storm
 supervisor:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:supervisor
   labels: 
@@ -26,7 +29,7 @@ supervisor:
   external_links:
     - ${zk_link}
   volumes:
-   - /usr/local/aeris_lib/:/usr/local/aeris_lib
+   - /usr/local/aeris_lib/resources/:/usr/local/aeris_lib/resources
 ui:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:ui
   command: bash /usr/bin/start-supervisor.sh
@@ -39,4 +42,4 @@ ui:
   external_links:
     - ${zk_link}
   volumes:
-   - /usr/local/aeris_lib/:/usr/local/aeris_lib
+   - /usr/local/aeris_lib/resources/:/usr/local/aeris_lib/resources
