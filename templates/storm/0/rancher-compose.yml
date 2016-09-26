@@ -24,12 +24,48 @@
       label: "ui Nodes:"
       required: true
       default: 1
+      type: "int"
     - variable: "zk_link"
       description: |
         Choose the Zookeeper service to use. 
         It's really recommended a dedicated zookeeper service just for Nifi.
       label: "Zookeeper stack/service"
       default: "zookeeper/zk"
+      required: true
+      type: "service"
+    - variable: "HazelcastETL_link"
+      description: |
+        Choose the Hazelcast service to use. 
+      label: "Hazelcast stack/service"
+      default: "HazelcastETL/Loader"
+      required: true
+      type: "service"
+    - variable: "HazelcastNONETL_link"
+      description: |
+        Choose the Hazelcast service to use. 
+      label: "Hazelcast stack/service"
+      default: "HazelcastNONETL/Loader"
+      required: true
+      type: "service"
+    - variable: "Kafka_link"
+      description: |
+        Choose the Kafka service to use. 
+      label: "Kafka stack/service"
+      default: "kafka/broker"
+      required: true
+      type: "service"
+    - variable: "RabbitMq_link"
+      description: |
+        Choose the RabbitMq service to use. 
+      label: "RabbitMq stack/service"
+      default: "rabbit1"
+      required: true
+      type: "service"
+    - variable: "Cassandra_link"
+      description: |
+        Choose the Cassandra service to use. 
+      label: "Casandra stack/service"
+      default: "cass/cass"
       required: true
       type: "service"
 nimbus:
