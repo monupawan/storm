@@ -28,6 +28,18 @@ supervisor:
     - nimbus:nimbus
   external_links:
     - ${zk_link}
+    - ${HazelcastETL_link}
+    - ${HazelcastNONETL_link}
+    - ${Kafka_link}
+    - ${RabbitMq_link}
+    - ${Cassandra_link}
+  environment:
+    - ZK_SERVICE=${zk_link}
+    - HazelcastETL_SERVICE=${HazelcastETL_link}
+    - HazelcastNONETL_SERVICE=${HazelcastNONETL_link}
+    - Kafka_SERVICE=${Kafka_link}
+    - RabbitMq_SERVICE=${RabbitMq_link}
+    - Cassandra_SERVICE=${Cassandra_link}
   volumes:
    - /usr/local/aeris_lib/resources/:/usr/local/aeris_lib/resources
 ui:
