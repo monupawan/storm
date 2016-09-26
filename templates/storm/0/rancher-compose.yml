@@ -36,14 +36,14 @@
     - variable: "HazelcastETL_link"
       description: |
         Choose the Hazelcast service to use. 
-      label: "Hazelcast stack/service"
+      label: "HazelcastETL stack/service"
       default: "HazelcastETL/Loader"
       required: true
       type: "service"
     - variable: "HazelcastNONETL_link"
       description: |
         Choose the Hazelcast service to use. 
-      label: "Hazelcast stack/service"
+      label: "HazelcastNONETL stack/service"
       default: "HazelcastNONETL/Loader"
       required: true
       type: "service"
