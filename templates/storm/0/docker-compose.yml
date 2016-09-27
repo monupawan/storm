@@ -1,5 +1,6 @@
 nimbus:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:nimbus3
+  command: mkdir -p /var/run/sshd
   command: bash /usr/bin/start-supervisor.sh
   restart: always
   ports:
@@ -40,6 +41,7 @@ supervisor:
    - /usr/local/aeris_lib/resources/:/usr/local/aeris_lib/resources
 ui:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:ui
+  command: mkdir -p /var/run/sshd
   command: bash /usr/bin/start-supervisor.sh
   restart: always
   ports:
