@@ -1,5 +1,5 @@
 nimbus:
-  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:nimbus2
+  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:nimbus3
   command: bash /usr/bin/start-supervisor.sh
   restart: always
   ports:
