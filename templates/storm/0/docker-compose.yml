@@ -1,6 +1,6 @@
 nimbus:
   image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:nimbus3
-  command: mkdir /var/run/sshd && bash /usr/bin/start-supervisor.sh
+  command: bash /usr/bin/start-supervisor.sh
   restart: always
   ports:
     - "49773:3773"
