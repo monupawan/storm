@@ -61,13 +61,6 @@
       default: "rabbit1"
       required: true
       type: "service"
-    - variable: "Cassandra_link"
-      description: |
-        Choose the Cassandra service to use. 
-      label: "Casandra stack/service"
-      default: "cass/cass"
-      required: true
-      type: "service"
 nimbus:
  scale: ${nimbus_scale}
 supervisor:
