@@ -1,5 +1,5 @@
 nimbus:
-  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:nimbus3
+  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:nimbus4
   command: bash /usr/bin/start-supervisor.sh
   restart: always
   ports:
@@ -23,14 +23,16 @@ nimbus:
     - /usr/local/aeris_lib/resources/:/usr/local/aeris_lib/resources
     - /usr/local/aeris_lib/storm/:/usr/local/aeris_lib/storm
 supervisor:
-  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:supervisor
+  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:supervisor1
   labels: 
     io.rancher.container.dns: true
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
     io.rancher.container.hostname_override: container_name
   restart: always
   command: mkdir -p /var/run/sshd
-  command: bash /usr/bin/start-supervisor.sh
+  command: bash /usr/bin/start-supervisor.sh nimbus
+  environment:
+    - ZK_SERVICE=${zk_link}
   ports:
     - "8000"
     - "22"
@@ -39,9 +41,11 @@ supervisor:
   volumes:
    - /usr/local/aeris_lib/resources/:/usr/local/aeris_lib/resources
 ui:
-  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:ui
+  image: 035824440926.dkr.ecr.us-east-1.amazonaws.com/nrt/storm:ui1
+  environment:
+    - ZK_SERVICE=${zk_link}
   command: mkdir -p /var/run/sshd
-  command: bash /usr/bin/start-supervisor.sh
+  command: bash /usr/bin/start-supervisor.sh nimbus
   restart: always
   ports:
     - "49080:8080"
